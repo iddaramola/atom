@@ -838,6 +838,7 @@ class TextEditorPresenter
 
     @pendingScrollLogicalPosition = null
     @pendingScrollLeft = scrollLeft
+    @shouldUpdateDecorations = true
 
     @emitDidUpdateState()
 
@@ -1233,6 +1234,9 @@ class TextEditorPresenter
     startPixelPosition = @pixelPositionForScreenPosition(screenRange.start)
     endPixelPosition = @pixelPositionForScreenPosition(screenRange.end)
     spannedRows = screenRange.end.row - screenRange.start.row + 1
+
+    startPixelPosition.left = 0 if startPixelPosition.left < 0
+    endPixelPosition.left = 0 if endPixelPosition.left < 0
 
     regions = []
 
